@@ -1,0 +1,5 @@
+module UAP;
+
+type DeviceRec: record;
+type AgentRec: record;
+type UserAgentRec: record;

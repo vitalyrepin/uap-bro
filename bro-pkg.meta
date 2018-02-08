@@ -1,0 +1,15 @@
+[package]
+description = User Agent Parser - Bro implementation based on uap-core
+tags = bro plugin, uap, user_agent
+script_dir =  build/scripts/VR/UAP
+build_command = ./configure --bro-dist=%(bro_dist)s  && make
+test_command = ( cd tests && btest -d )
+plugin_dir = build
+config_files = scripts/init.bro
+version = 0.1
+depends =
+  bro >=2.5.0
+  bro-pkg >=1.2
+external_depends =
+  libyaml-cpp-dev ~0.5.2
+  libboost-regex-dev ~1.58.0

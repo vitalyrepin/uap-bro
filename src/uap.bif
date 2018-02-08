@@ -1,0 +1,42 @@
+module UAP;
+
+const uap_core_regex_path: string;
+
+%%{
+#include "Plugin.h"
+#include "types.bif.h"
+%%}
+
+function parse%(ua: string%) : UserAgentRec
+    %{
+      std::string _ua(reinterpret_cast<const char*>(ua->Bytes()), (std::string::size_type)ua->Len());
+
+      auto parsed_agent = ::plugin::VR_UAP::plugin.parse(_ua);
+
+      auto r = new RecordVal(::BifType::Record::UAP::UserAgentRec);
+      auto device = new RecordVal(::BifType::Record::UAP::DeviceRec);
+      auto os = new RecordVal(::BifType::Record::UAP::AgentRec);
+      auto browser = new RecordVal(::BifType::Record::UAP::AgentRec);
+    
+      os->Assign(0, new StringVal(parsed_agent.os.major.c_str()));
+      os->Assign(1, new StringVal(parsed_agent.os.minor.c_str()));
+      os->Assign(2, new StringVal(parsed_agent.os.patch.c_str()));
+      os->Assign(3, new StringVal(parsed_agent.os.patch_minor.c_str()));
+      os->Assign(4, new StringVal(parsed_agent.os.family.c_str()));
+
+      browser->Assign(0, new StringVal(parsed_agent.browser.major.c_str()));
+      browser->Assign(1, new StringVal(parsed_agent.browser.minor.c_str()));
+      browser->Assign(2, new StringVal(parsed_agent.browser.patch.c_str()));
+      browser->Assign(3, new StringVal(parsed_agent.browser.patch_minor.c_str()));
+      browser->Assign(4, new StringVal(parsed_agent.browser.family.c_str()));
+
+      device->Assign(0, new StringVal(parsed_agent.device.model.c_str()));
+      device->Assign(1, new StringVal(parsed_agent.device.brand.c_str()));
+      device->Assign(2, new StringVal(parsed_agent.device.family.c_str()));
+
+      r->Assign(0, device);
+      r->Assign(1, os);
+      r->Assign(2, browser);
+
+      return r; 
+    %}  
