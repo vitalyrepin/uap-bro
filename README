@@ -6,9 +6,8 @@ User Agent Parser - Bro implementation based on uap-core
 
 Installation
 ------------
-::
 
-	bro-pkg install vitalyrepin/uap-bro
+bro-pkg install vitalyrepin/uap-bro
 
 Configuration options
 ---------------------
@@ -24,14 +23,10 @@ In oprder to parse user-agent string, use the function parse which returns recor
 
 Example:
 
-.. code-block:: bash
-
    local ua: UAP::UserAgentRec;
    ua = UAP::parse(c$http$user_agent);
 
 Three utility functions are defined in  uap-bro/scripts/uap-utils.bro:
-
-.. code-block:: bash
 
    function AgentRecToVersionString(agent: AgentRec): string
    function AgentRecToString(agent: AgentRec): string
@@ -39,4 +34,4 @@ Three utility functions are defined in  uap-bro/scripts/uap-utils.bro:
 
 Example:
 
-ua_str = UAP::UserAgentRecToString(ua);
+   ua_str = UAP::UserAgentRecToString(ua);
