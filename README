@@ -1,2 +1,37 @@
-# uap-bro
 User Agent Parser - Bro implementation based on uap-core
+uap-bro
+==========
+
+User Agent Parser - Bro implementation based on uap-core
+
+Installation
+------------
+
+bro-pkg install vitalyrepin/uap-bro
+
+Configuration options
+---------------------
+
+uap_core_regex_path  - path to the regexp file from uap-core project (bundled with this package)
+
+API
+---
+
+Three record types are defined in  uap-bro/scripts/types.bro  - DeviceRec, AgentRec and UserAgentRec.
+
+In oprder to parse user-agent string, use the function parse which returns record of type UserAgentRec.
+
+Example:
+
+   local ua: UAP::UserAgentRec;
+   ua = UAP::parse(c$http$user_agent);
+
+Three utility functions are defined in  uap-bro/scripts/uap-utils.bro:
+
+   function AgentRecToVersionString(agent: AgentRec): string
+   function AgentRecToString(agent: AgentRec): string
+   function UserAgentRecToString(ua: UserAgentRec): string
+
+Example:
+
+   ua_str = UAP::UserAgentRecToString(ua);
