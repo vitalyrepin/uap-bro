@@ -12,7 +12,7 @@ bro-pkg install vitalyrepin/uap-bro
 Configuration options
 ---------------------
 
-uap_core_regex_path  - path to the regexp file from uap-core project (bundled with the package)
+uap_core_regex_path  - path to the regexp file from uap-core project (bundled with this package)
 
 API
 ---
