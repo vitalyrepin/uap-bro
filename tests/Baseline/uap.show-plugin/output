@@ -1,4 +1,4 @@
-VR::UAP - User Agent Parser - Bro implementation based on uap-core (dynamic, version 0.1)
+VR::UAP - User Agent Parser - Bro implementation based on uap-core (dynamic, version)
     [Constant] UAP::uap_core_regex_path
     [Function] UAP::parse
     [Type] UAP::DeviceRec
